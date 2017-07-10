@@ -1,0 +1,4 @@
+# TODO: Do those belong here?
+aem_admin_user: admin
+aem_admin_password: admin
+aem_port: "{{ conga_config.quickstart.port }}"
