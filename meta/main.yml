@@ -1,10 +1,11 @@
 dependencies:
   - {
       role: conga-files,
-      base_path: "{{ aem_home }}/crx-quickstart",
+      base_path: "{{ conga_config.quickstart.rootPath }}/crx-quickstart",
       owner: "{{ aem_user }}",
       group: "{{ aem_group }}",
       mode: "0755",
       handlers: [ restart aem ]
     }
-  - conga-aem-packages
+  - { role: conga-aem-packages,
+      aem_port: "{{ conga_config.quickstart.port }}" }
