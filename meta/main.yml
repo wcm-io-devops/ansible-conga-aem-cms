@@ -1,4 +1,5 @@
 dependencies:
+  - conga-facts
   - {
       role: conga-files,
       base_path: "{{ conga_config.quickstart.rootPath }}/crx-quickstart",
