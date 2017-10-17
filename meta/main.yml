@@ -9,4 +9,5 @@ dependencies:
       handlers: [ restart aem ]
     }
   - { role: conga-aem-packages,
-      aem_port: "{{ conga_config.quickstart.port }}" }
+      aem_port: "{{ conga_config.quickstart.port }}",
+      aem_instance_name: "{{ conga_config.quickstart.rootPath | basename }}" }
