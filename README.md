@@ -8,7 +8,7 @@ This role requires Ansible 2.0 or higher.
 
 ## Role Variables
 
-The role requires the `aem_user` and `aem_group` variables to be set to the owner and group the files should have on the target system. Usually it uses the defaults defined by the [aem-cms](https://github.com/wcm-io-devops/ansible-aem-cms) role which it is designed to combined with.
+The role requires the `aem_cms_user` and `aem_cms_group` variables to be set to the owner and group the files should have on the target system. Usually it uses the defaults defined by the [aem-cms](https://github.com/wcm-io-devops/ansible-aem-cms) role which it is designed to combined with.
 
 ## Dependencies
 
@@ -24,12 +24,12 @@ Compiles the CONGA configuration, installs AEM with the Ansible `aem-cms` role a
 	
 	- hosts: aem
 	  pre_tasks:
-	    # Get CONGA facts for role aem-cms to set aem_home below
+	    # Get CONGA facts for role aem-cms to set aem_cms_home below
 	    - conga_facts:
 	        conga_role_mapping: aem-cms
 	  roles:
 	    - { role: aem-cms,
-	        aem_home: "{{ conga_config.quickstart.rootPath }}" }
+	        aem_cms_home: "{{ conga_config.quickstart.rootPath }}" }
 	    - conga-aem-cms
 
 

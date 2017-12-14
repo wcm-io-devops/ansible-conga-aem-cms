@@ -2,12 +2,12 @@ dependencies:
   - conga-facts
   - {
       role: conga-files,
-      base_path: "{{ conga_config.quickstart.rootPath }}/crx-quickstart",
-      owner: "{{ aem_user }}",
-      group: "{{ aem_group }}",
-      mode: "0755",
-      handlers: [ restart aem ]
+      conga_files_base_path: "{{ conga_config.quickstart.rootPath }}/crx-quickstart",
+      conga_files_owner: "{{ aem_cms_user }}",
+      conga_files_group: "{{ aem_cms_group }}",
+      conga_files_mode: "0755",
+      conga_files_handlers: [ restart aem ]
     }
   - { role: conga-aem-packages,
-      aem_port: "{{ conga_config.quickstart.port }}",
-      aem_instance_name: "{{ conga_config.quickstart.rootPath | basename }}" }
+      conga_aem_packages_port: "{{ conga_config.quickstart.port }}",
+      aem_service_name: "{{ conga_config.quickstart.rootPath | basename }}" }
