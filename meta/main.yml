@@ -14,9 +14,7 @@ dependencies:
       conga_bundle_files_owner: "{{ aem_cms_user }}",
       conga_bundle_files_group: "{{ aem_cms_group }}",
       conga_bundle_files_mode: "0600",
-      conga_bundle_files_handlers: [ restart aem ],
-      conga_bundle_files_aem_user: "{{ aem_admin_user }}",
-      conga_bundle_files_aem_password: "{{ aem_admin_password }}"
+      conga_bundle_files_handlers: [ restart aem ]
     }
   - { role: conga-aem-packages,
       conga_aem_packages_port: "{{ conga_config.quickstart.port }}",
