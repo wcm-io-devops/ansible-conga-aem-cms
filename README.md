@@ -12,7 +12,19 @@ The role requires the `aem_cms_user` and `aem_cms_group` variables to be set to 
 
 ## Dependencies
 
-This role depends on the [conga-facts](https://github.com/wcm-io-devops/ansible-conga-facts) role for accessing the CONGA configuration model and on the [conga-files](https://github.com/wcm-io-devops/ansible-conga-files) and [conga-aem-packages](https://github.com/wcm-io-devops/ansible-conga-aem-packages) roles for deploying the configuration files and packages. It also depends on the restart handler from the [aem-service](https://github.com/wcm-io-devops/ansible-aem-service) role to restart the instance if the AEM start script has been changed.
+This role depends on
+* [conga-facts](https://github.com/wcm-io-devops/ansible-conga-facts)
+  role for accessing the CONGA configuration model
+* [conga-files](https://github.com/wcm-io-devops/ansible-conga-files)
+  role for deploying configuration files
+* [conga-bundle-files](https://github.com/wcm-io-devops/ansible-conga-bundle-files)
+  role for deploying bundle related files
+* [conga-aem-packages](https://github.com/wcm-io-devops/ansible-conga-aem-packages)
+  for deploying aem packages.
+
+It also depends on the restart handler from the
+[aem-service](https://github.com/wcm-io-devops/ansible-aem-service) role
+to restart the instance if the AEM start script has been changed.
 
 ## Example
 
