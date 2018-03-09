@@ -6,7 +6,17 @@ dependencies:
       conga_files_owner: "{{ aem_cms_user }}",
       conga_files_group: "{{ aem_cms_group }}",
       conga_files_mode: "0755",
-      conga_files_handlers: [ restart aem ]
+      conga_files_handlers: [ restart aem ],
+    }
+    # ensure service is started
+  - { name: aem-service,
+        aem_service_port: "{{ conga_config.quickstart.port }}",
+        aem_service_name: "{{ aem_cms_service_name }}"
+    }
+    # change manage users (e.g. changed password of admin user)
+  - {
+      role: aem-user,
+      aem_user_aem_port: "{{ conga_config.quickstart.port }}",
     }
   - {
       role: conga-bundle-files,
