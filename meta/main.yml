@@ -13,7 +13,7 @@ dependencies:
         aem_service_port: "{{ conga_config.quickstart.port }}",
         aem_service_name: "{{ aem_cms_service_name }}"
     }
-    # change manage users (e.g. changed password of admin user)
+    # manage users (e.g. change password of admin user)
   - {
       role: aem-user,
       aem_user_aem_port: "{{ conga_config.quickstart.port }}",
