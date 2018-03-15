@@ -13,10 +13,17 @@ dependencies:
         aem_service_port: "{{ conga_config.quickstart.port }}",
         aem_service_name: "{{ aem_cms_service_name }}"
     }
-    # manage users (e.g. change password of admin user)
+    # apply security changes
   - {
-      role: aem-user,
-      aem_user_aem_port: "{{ conga_config.quickstart.port }}",
+      role: aem-security,
+      aem_security_aem_port: "{{ conga_config.quickstart.port }}",
+      aem_security_admin_username: "{{ conga_config.aem.admin.username }}",
+      aem_security_admin_password_new: "{{ conga_config.aem.admin.password }}",
+      aem_security_admin_password_old: "{{ conga_config.aem.admin.passwordOld }}",
+      when: conga_config.aem.admin.username is defined and conga_config.aem.admin.username != ""
+            and conga_config.aem.admin.password is defined and conga_config.aem.admin.password != ""
+            and conga_config.aem.admin.passwordOld is defined and conga_config.aem.admin.passwordOld != ""
+            and conga_config.aem.admin.password != conga_config.aem.admin.passwordOld
     }
   - {
       role: conga-bundle-files,
