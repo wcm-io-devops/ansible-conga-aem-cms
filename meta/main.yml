@@ -13,17 +13,17 @@ dependencies:
         aem_service_port: "{{ conga_config.quickstart.port }}",
         aem_service_name: "{{ aem_cms_service_name }}"
     }
-    # apply security changes
+    # apply security role (change admin password if configured and necessary)
   - {
       role: aem-security,
       aem_security_aem_port: "{{ conga_config.quickstart.port }}",
-      aem_security_admin_username: "{{ conga_config.aem.admin.username }}",
-      aem_security_admin_password_new: "{{ conga_config.aem.admin.password }}",
-      aem_security_admin_password_old: "{{ conga_config.aem.admin.passwordOld }}",
-      when: conga_config.aem.admin.username is defined and conga_config.aem.admin.username != ""
-            and conga_config.aem.admin.password is defined and conga_config.aem.admin.password != ""
-            and conga_config.aem.admin.passwordOld is defined and conga_config.aem.admin.passwordOld != ""
-            and conga_config.aem.admin.password != conga_config.aem.admin.passwordOld
+      aem_security_admin_username: "{{ conga_config.quickstart.adminUser.username }}",
+      aem_security_admin_password_new: "{{ conga_config.quickstart.adminUser.password }}",
+      aem_security_admin_password_old: "{{ conga_config.quickstart.adminUser.passwordOld }}",
+      when: conga_config.quickstart.adminUser.username is defined and conga_config.quickstart.adminUser.username != ""
+            and conga_config.quickstart.adminUser.password is defined and conga_config.quickstart.adminUser.password != ""
+            and conga_config.quickstart.adminUser.passwordOld is defined and conga_config.quickstart.adminUser.passwordOld != ""
+            and conga_config.quickstart.adminUser.password != conga_config.quickstart.adminUser.passwordOld
     }
   - {
       role: conga-bundle-files,
