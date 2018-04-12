@@ -6,7 +6,24 @@ dependencies:
       conga_files_owner: "{{ aem_cms_user }}",
       conga_files_group: "{{ aem_cms_group }}",
       conga_files_mode: "0755",
-      conga_files_handlers: [ restart aem ]
+      conga_files_handlers: [ restart aem ],
+    }
+    # ensure service is started
+  - { name: aem-service,
+        aem_service_port: "{{ conga_config.quickstart.port }}",
+        aem_service_name: "{{ aem_cms_service_name }}"
+    }
+    # apply security role (change admin password if configured and necessary)
+  - {
+      role: aem-security,
+      aem_security_aem_port: "{{ conga_config.quickstart.port }}",
+      aem_security_admin_username: "{{ conga_config.quickstart.adminUser.username }}",
+      aem_security_admin_password_new: "{{ conga_config.quickstart.adminUser.password }}",
+      aem_security_admin_password_old: "{{ conga_config.quickstart.adminUser.passwordOld }}",
+      when: conga_config.quickstart.adminUser.username is defined and conga_config.quickstart.adminUser.username != ""
+            and conga_config.quickstart.adminUser.password is defined and conga_config.quickstart.adminUser.password != ""
+            and conga_config.quickstart.adminUser.passwordOld is defined and conga_config.quickstart.adminUser.passwordOld != ""
+            and conga_config.quickstart.adminUser.password != conga_config.quickstart.adminUser.passwordOld
     }
   - {
       role: conga-bundle-files,
