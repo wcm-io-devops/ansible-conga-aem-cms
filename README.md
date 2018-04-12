@@ -17,14 +17,18 @@ This role depends on
   role for accessing the CONGA configuration model
 * [conga-files](https://github.com/wcm-io-devops/ansible-conga-files)
   role for deploying configuration files
+* [aem-service](https://github.com/wcm-io-devops/ansible-aem-service)
+  role to initially start the instance and to provide the "aem restart"
+  handler for
+  [conga-bundle-files](https://github.com/wcm-io-devops/ansible-conga-bundle-files)
+  and [conga-aem-packages](https://github.com/wcm-io-devops/ansible-conga-aem-packages).
+* [aem-security](https://github.com/wcm-io-devops/ansible-aem-security)
+  role for applying security changes like changing the admin user
+  password
 * [conga-bundle-files](https://github.com/wcm-io-devops/ansible-conga-bundle-files)
   role for deploying bundle related files
 * [conga-aem-packages](https://github.com/wcm-io-devops/ansible-conga-aem-packages)
   for deploying aem packages.
-
-It also depends on the restart handler from the
-[aem-service](https://github.com/wcm-io-devops/ansible-aem-service) role
-to restart the instance if the AEM start script has been changed.
 
 ## Example
 
