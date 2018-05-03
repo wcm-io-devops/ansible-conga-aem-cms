@@ -21,7 +21,8 @@ dependencies:
       aem_security_admin_username: "{{ conga_config.quickstart.adminUser.username }}",
       aem_security_admin_password_new: "{{ conga_config.quickstart.adminUser.password }}",
       aem_security_admin_password_old: "{{ conga_config.quickstart.adminUser.passwordOld }}",
-      when: conga_config.quickstart.adminUser.username is defined and conga_config.quickstart.adminUser.username != ""
+      when: conga_config.quickstart.adminUser is defined
+            and conga_config.quickstart.adminUser.username is defined and conga_config.quickstart.adminUser.username != ""
             and conga_config.quickstart.adminUser.password is defined and conga_config.quickstart.adminUser.password != ""
             and conga_config.quickstart.adminUser.passwordOld is defined and conga_config.quickstart.adminUser.passwordOld != ""
             and conga_config.quickstart.adminUser.password != conga_config.quickstart.adminUser.passwordOld
