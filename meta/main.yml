@@ -34,9 +34,12 @@ dependencies:
       conga_bundle_files_group: "{{ aem_cms_group }}",
       conga_bundle_files_mode: "0600",
       conga_bundle_files_aem_port: "{{ conga_config.quickstart.port }}",
-      conga_bundle_files_handlers: [ restart aem ]
+      conga_bundle_files_handlers: [ restart aem ],
+      conga_bundle_files_standalone: false,
+      aem_service_name: "{{ aem_cms_service_name }}",
     }
   - { role: conga-aem-packages,
       conga_aem_packages_port: "{{ conga_config.quickstart.port }}",
-      aem_service_name: "{{ conga_config.quickstart.rootPath | basename }}"
+      aem_service_name: "{{ aem_cms_service_name }}",
+      conga_aem_packages_standalone: false
     }
