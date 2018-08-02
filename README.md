@@ -8,7 +8,7 @@ This role requires Ansible 2.0 or higher.
 
 ## Role Variables
 
-The role requires the `aem_cms_user` and `aem_cms_group` variables to be set to the owner and group the files should have on the target system. Usually it uses the defaults defined by the [aem-cms](https://github.com/wcm-io-devops/ansible-aem-cms) role which it is designed to combined with.
+The role requires the `aem_cms_user` and `aem_cms_group` variables to be set to the owner and group the files should have on the target system. Usually it uses the defaults defined by the [wcm-io-devops.aem-cms](https://github.com/wcm-io-devops/ansible-aem-cms) role which it is designed to combined with.
 
 ## Dependencies
 
