@@ -1,4 +1,5 @@
 - name: wcm_io_devops.conga_facts
+- name: wcm_io_devops.conga_files
 - name: wcm_io_devops.aem_service
 - name: wcm_io_devops.aem_security
 - name: wcm_io_devops.conga_bundle_files
