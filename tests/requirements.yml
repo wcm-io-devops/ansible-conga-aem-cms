@@ -1,0 +1,12 @@
+- name: wcm_io_devops.conga_facts
+  version: master
+- name: wcm_io_devops.conga_files
+  version: master
+- name: wcm_io_devops.aem_service
+  version: master
+- name: wcm_io_devops.aem_security
+  version: master
+- name: wcm_io_devops.conga_bundle_files
+  version: master
+- name: wcm_io_devops.conga_aem_packages
+  version: master
