@@ -34,7 +34,7 @@ dependencies:
     }
   - {
       role: wcm_io_devops.conga_files,
-      version: 1.0.0,
+      version: 1.0.1,
       conga_files_base_path: "{{ conga_config.quickstart.rootPath }}/crx-quickstart",
       conga_files_owner: "{{ aem_cms_user }}",
       conga_files_group: "{{ aem_cms_group }}",
