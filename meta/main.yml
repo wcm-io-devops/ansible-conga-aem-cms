@@ -64,7 +64,7 @@ dependencies:
     }
   - {
       role: wcm_io_devops.conga_bundle_files,
-      version: 1.1.0,
+      version: 1.2.0,
       conga_bundle_files_base_path: "{{ conga_config.quickstart.rootPath }}",
       conga_bundle_files_owner: "{{ aem_cms_user }}",
       conga_bundle_files_group: "{{ aem_cms_group }}",
