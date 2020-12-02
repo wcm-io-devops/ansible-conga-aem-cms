@@ -1,0 +1,9 @@
+- name: Restart AEM when required.
+  import_role:
+    name: wcm_io_devops.aem_service
+  vars:
+    aem_service_name: "{{ aem_cms_service_name }}"
+    aem_service_port: "{{ conga_config.quickstart.port }}"
+    aem_service_state: restarted
+  when:
+    - _conga_files_result and _conga_files_result.changed
