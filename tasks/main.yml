@@ -1,4 +1,4 @@
-- name: Restart AEM when required.
+- name: Restart AEM when required. # noqa 503
   import_role:
     name: wcm_io_devops.aem_service
   vars:
