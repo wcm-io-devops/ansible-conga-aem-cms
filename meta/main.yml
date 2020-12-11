@@ -73,7 +73,7 @@ dependencies:
       conga_bundle_files_standalone: false,
     }
   - { role: wcm_io_devops.conga_aem_packages,
-      version: 1.3.0,
+      version: 2.0.0,
       conga_aem_packages_port: "{{ conga_config.quickstart.port }}",
       aem_service_name: "{{ aem_cms_service_name }}",
       conga_aem_packages_standalone: false
