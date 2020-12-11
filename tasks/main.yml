@@ -1,0 +1,21 @@
+- name: Debug output.
+  debug:
+    msg:
+      - "conga_aem_packages_aem_restarted: {{ conga_aem_packages_aem_restarted | default(None) }}"
+      - "conga_files_changed: {{ conga_files_changed | default(None) }}"
+      - "conga_bundle_files_changed: {{ conga_bundle_files_changed | default(None) }}"
+    verbosity: 1
+
+# restart AEM when it was not restarted during package installation but
+# wcm_io_devops.conga_files and wcm_io_devops.conga_bundle_files have changed.
+- name: Restart AEM when required. # noqa 503
+  include_role:
+    name: wcm_io_devops.aem_service
+  vars:
+    aem_service_name: "{{ aem_cms_service_name }}"
+    aem_service_port: "{{ conga_config.quickstart.port }}"
+    aem_service_state: restarted
+  when:
+    - not conga_aem_packages_aem_restarted | default(false)
+    - (conga_files_changed | default(false))
+      or (conga_bundle_files_changed | default(false))
