@@ -1,3 +1,4 @@
+---
 galaxy_info:
   role_name: conga_aem_cms
   author: Martin Wehner
@@ -8,17 +9,17 @@ galaxy_info:
   min_ansible_version: 2.7
 
   platforms:
-  - name: Ubuntu
-    versions:
-    - trusty
-    - xenial
-  - name: Debian
-    versions:
-    - jessie
-    - stretch
-  - name: EL
-    versions:
-    - 7
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+    - name: EL
+      versions:
+        - 7
 
   galaxy_tags:
     - aem
@@ -28,53 +29,48 @@ galaxy_info:
     - wcmio
 
 dependencies:
-  - {
-      role: wcm_io_devops.conga_facts,
-      version: 1.1.0
-    }
-  - {
-      role: wcm_io_devops.conga_files,
-      version: 1.1.0,
-      conga_files_base_path: "{{ conga_config.quickstart.rootPath }}/crx-quickstart",
-      conga_files_owner: "{{ aem_cms_user }}",
-      conga_files_group: "{{ aem_cms_group }}",
-      conga_files_mode: "0755"
-    }
+  - role: wcm_io_devops.conga_facts
+    version: 1.1.0
+
+  - role: wcm_io_devops.conga_files
+    version: 1.1.0
+    conga_files_base_path: "{{ conga_config.quickstart.rootPath }}/crx-quickstart"
+    conga_files_owner: "{{ aem_cms_user }}"
+    conga_files_group: "{{ aem_cms_group }}"
+    conga_files_mode: "0755"
+
     # ensure service is started
-  - { name: wcm_io_devops.aem_service,
-      version: 1.3.0,
-      aem_service_port: "{{ conga_config.quickstart.port }}",
-      aem_service_name: "{{ aem_cms_service_name }}",
-      aem_service_state: started
-    }
+  - name: wcm_io_devops.aem_service
+    version: 1.3.0
+    aem_service_port: "{{ conga_config.quickstart.port }}"
+    aem_service_name: "{{ aem_cms_service_name }}"
+    aem_service_state: started
+
     # apply security role (change admin password if configured and necessary)
-  - {
-      role: wcm_io_devops.aem_security,
-      version: 1.1.0,
-      aem_security_aem_port: "{{ conga_config.quickstart.port }}",
-      aem_security_admin_username: "{{ conga_config.quickstart.adminUser.username }}",
-      aem_security_admin_password_new: "{{ conga_config.quickstart.adminUser.password }}",
-      aem_security_admin_password_old: "{{ conga_config.quickstart.adminUser.passwordOld }}",
-      when: conga_config.quickstart.adminUser is defined
-            and conga_config.quickstart.adminUser.username | default("") | string | length > 0
-            and conga_config.quickstart.adminUser.password | default("") | string | length > 0
-            and conga_config.quickstart.adminUser.passwordOld | default("") | string | length > 0
-            and conga_config.quickstart.adminUser.password != conga_config.quickstart.adminUser.passwordOld
-    }
-  - {
-      role: wcm_io_devops.conga_bundle_files,
-      version: 2.0.0,
-      conga_bundle_files_base_path: "{{ conga_config.quickstart.rootPath }}",
-      conga_bundle_files_owner: "{{ aem_cms_user }}",
-      conga_bundle_files_group: "{{ aem_cms_group }}",
-      conga_bundle_files_mode: "0600",
-      conga_bundle_files_aem_service_port: "{{ conga_config.quickstart.port }}",
-      conga_bundle_files_aem_service_name: "{{ aem_cms_service_name }}",
-      conga_bundle_files_standalone: false,
-    }
-  - { role: wcm_io_devops.conga_aem_packages,
-      version: 2.0.0,
-      conga_aem_packages_port: "{{ conga_config.quickstart.port }}",
-      aem_service_name: "{{ aem_cms_service_name }}",
-      conga_aem_packages_standalone: false
-    }
+  - role: wcm_io_devops.aem_security
+    version: 1.1.0
+    aem_security_aem_port: "{{ conga_config.quickstart.port }}"
+    aem_security_admin_username: "{{ conga_config.quickstart.adminUser.username }}"
+    aem_security_admin_password_new: "{{ conga_config.quickstart.adminUser.password }}"
+    aem_security_admin_password_old: "{{ conga_config.quickstart.adminUser.passwordOld }}"
+    when: conga_config.quickstart.adminUser is defined
+          and conga_config.quickstart.adminUser.username | default("") | string | length > 0
+          and conga_config.quickstart.adminUser.password | default("") | string | length > 0
+          and conga_config.quickstart.adminUser.passwordOld | default("") | string | length > 0
+          and conga_config.quickstart.adminUser.password != conga_config.quickstart.adminUser.passwordOld
+
+  - role: wcm_io_devops.conga_bundle_files
+    version: 2.0.0
+    conga_bundle_files_base_path: "{{ conga_config.quickstart.rootPath }}"
+    conga_bundle_files_owner: "{{ aem_cms_user }}"
+    conga_bundle_files_group: "{{ aem_cms_group }}"
+    conga_bundle_files_mode: "0600"
+    conga_bundle_files_aem_service_port: "{{ conga_config.quickstart.port }}"
+    conga_bundle_files_aem_service_name: "{{ aem_cms_service_name }}"
+    conga_bundle_files_standalone: false
+
+  - role: wcm_io_devops.conga_aem_packages
+    version: 2.0.0
+    conga_aem_packages_port: "{{ conga_config.quickstart.port }}"
+    aem_service_name: "{{ aem_cms_service_name }}"
+    conga_aem_packages_standalone: false
