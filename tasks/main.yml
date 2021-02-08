@@ -1,3 +1,4 @@
+---
 - name: Debug output.
   debug:
     msg:
@@ -8,7 +9,7 @@
 
 # restart AEM when it was not restarted during package installation but
 # wcm_io_devops.conga_files and wcm_io_devops.conga_bundle_files have changed.
-- name: Restart AEM when required. # noqa 503
+- name: Restart AEM when required.  # noqa 503
   include_role:
     name: wcm_io_devops.aem_service
   vars:
